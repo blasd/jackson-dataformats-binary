@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.io.IOContext;
 import com.fasterxml.jackson.dataformat.avro.AvroGenerator;
 import com.fasterxml.jackson.dataformat.avro.AvroParser;
 import com.fasterxml.jackson.dataformat.avro.AvroSchema;
+import com.fasterxml.jackson.dataformat.avro.apacheimpl.ApacheParquetParserImpl;
 import com.fasterxml.jackson.dataformat.avro.deser.JacksonAvroParserImpl;
 
 /**
@@ -335,7 +336,7 @@ public class ParquetFactory extends JsonFactory
     @Override
     protected AvroParser _createParser(InputStream in, IOContext ctxt) throws IOException {
 // !!! 21-Apr-2017, tatu: make configurable
-        return new JacksonAvroParserImpl(ctxt, _parserFeatures, _avroParserFeatures,
+        return new ApacheParquetParserImpl(ctxt, _parserFeatures, _avroParserFeatures,
 //        return new ApacheAvroParserImpl(ctxt, _parserFeatures, _avroParserFeatures,
                 _objectCodec, in);
     }
@@ -354,7 +355,7 @@ public class ParquetFactory extends JsonFactory
     @Override
     protected AvroParser _createParser(byte[] data, int offset, int len, IOContext ctxt) throws IOException {
 // !!! 21-Apr-2017, tatu: make configurable
-        return new JacksonAvroParserImpl(ctxt, _parserFeatures, _avroParserFeatures,
+        return new ApacheParquetParserImpl(ctxt, _parserFeatures, _avroParserFeatures,
 //        return new ApacheAvroParserImpl(ctxt, _parserFeatures, _avroParserFeatures,
                 _objectCodec, data, offset, len);
     }
